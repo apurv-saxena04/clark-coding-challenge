@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Case Configs" icon-name="standard:case">
+        <div class="slds-form">
+            <div class="slds-form-element_horizontal">
+                <template if:true={allCaseConfigs}>
+                    <lightning-datatable
+                        key-field="Id"
+                        onrowselection={getSelectedRecords}
+                        data={allCaseConfigs}
+                        columns={columns}
+                        sorted-by={sortedBy}
+                        sorted-direction={sortedDirection} 
+                        onsort={sortColumns}>
+                    </lightning-datatable>
+                </template>
+            </div>
+     
+            <div class="slds-form-element_horizontal slds-align_absolute-center">
+                <template if:true={allCaseConfigs}>
+                    <lightning-button variant="brand" label="Send" onclick={sendRequest} disabled={disabled}></lightning-button>
+                </template>
+            </div>
+        </div>      
+    </lightning-card>
+    <lightning-spinner alternative-text="Loading" size="small" if:true={isLoading}></lightning-spinner>
+</template>
